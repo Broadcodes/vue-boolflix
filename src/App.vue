@@ -8,7 +8,8 @@
     </header>
 
     <main>
-      <HomepageContainer />
+      <HomepageContainer/>
+      <MainComponent :dataMoviesListObj="dataMoviesArr" />
     </main>
   </div>
 </template>
@@ -18,6 +19,7 @@ import HeaderComponent from "./components/headerComponent.vue";
 import HomepageContainer from "./components/homepageContainer.vue";
 
 import axios from "axios";
+import MainComponent from "./components/MainComponent.vue";
 
 export default {
   name: "App",
@@ -40,7 +42,7 @@ export default {
         .then(({ data, status }) => {
           if (status === 200) {
             // Assegno i dati contenuti nell'array di oggetti contenuto nell'API alla variabile globale di tipo Array
-            arr.push(data);
+            arr.push(...data.results);
           }
         })
         .catch((e) => {
@@ -55,13 +57,13 @@ export default {
       this.query = textSearch;
       // Tutti i dati presenti nell'API vengono salvati nell'array dataMoviesArr
       this.dataMoviesArr = this.getApiMovies();
-      console.log(this.dataMoviesArr);
     },
   },
   components: {
     HeaderComponent,
     HomepageContainer,
-  }
+    MainComponent
+}
 };
 </script>
 

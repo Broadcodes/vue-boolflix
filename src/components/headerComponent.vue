@@ -11,8 +11,8 @@ film trovato:
 
 <template>
   <header>
-    <input type="text" v-model="searchMoviesText"/>
-    <button></button>
+    <input type="text" v-model="searchMoviesText" @keyup.enter="searchUserMovies"/>
+    <button @click="searchUserMovies">Cerca</button>
   </header>
 </template>
 
@@ -23,6 +23,14 @@ export default {
         searchMoviesText: '',
     };
   },
+  methods:{
+    searchUserMovies(){
+        this.$emit('searchMovies', this.searchMoviesText);
+    }
+  },
+  props:{
+    listMoviesArr: Array
+  }
 };
 </script>
 

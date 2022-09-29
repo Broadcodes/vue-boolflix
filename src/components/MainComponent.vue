@@ -2,14 +2,24 @@
   <div>
     <div class="containerCard">
       <div class="card" v-for="(item, index) in dataListObj" :key="item.id">
-        <img :src="getPosterPath('w185', item.poster_path)" :alt="item.title" />
+        <img :src="getPosterPath('w342', item.poster_path)" :alt="item.title" />
         <div v-if="index < dataListObj.length / 2">
-          <p>Titolo Movie: {{ item.title }}</p>
-          <p>Titolo Originale: {{ item.original_title }}</p>
+          <div v-if="item.title === item.original_title">
+            <p>Titolo Movie: {{ item.title }}</p>
+          </div>
+          <div v-else>
+            <p>Titolo Movie: {{ item.title }}</p>
+            <p>Titolo Originale: {{ item.original_title }}</p>
+          </div>
         </div>
         <div v-else>
-          <p>Titolo Serie: {{ item.name }}</p>
-          <p>Titolo Originale: {{ item.original_name }}</p>
+          <div v-if="item.title === item.original_title">
+            <p>Titolo Movie: {{ item.title }}</p>
+          </div>
+          <div v-else>
+            <p>Titolo Series: {{ item.title }}</p>
+            <p>Titolo Originale: {{ item.original_title }}</p>
+          </div>
         </div>
         <img :src="setFlagIcon(item.original_language)" :alt="item.original_language" @error="replaceFlagNotFound" />
         <div>
@@ -50,7 +60,7 @@
               <i class="starYellow fa-solid fa-star"></i>
             </span>
           </p>
-          
+
         </div>
 
 
@@ -67,6 +77,16 @@ export default {
     return {};
   },
   methods: {
+    viewOneTitle(translatedTitle, originalTitle){
+
+      if(translatedTitle === originalTitle){
+        return `Titolo: ${translatedTitle}`;
+      } else {
+        return `Titolo: ${translatedTitle}
+        Titolo Originale: ${originalTitle}`;
+      }
+
+    },
     toFiveStars(vote) {
       return Math.ceil(vote / 2);
     },
@@ -106,7 +126,7 @@ export default {
 
   .card {
     border: 1px solid #000;
-    padding: 40px 50px 20px;
+    padding: 40px 20px;
     width: calc(100% /3 - 100px);
     text-align: center;
     margin: 50px;
@@ -120,11 +140,11 @@ export default {
       text-align: left;
     }
 
-    .starYellow{
+    .starYellow {
       color: rgb(238, 202, 42);
     }
 
-    .starGray{
+    .starGray {
       color: rgb(199, 199, 199);
     }
   }

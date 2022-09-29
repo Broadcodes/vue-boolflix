@@ -91,7 +91,8 @@ export default {
   body {
     font-family: sans-serif;
   }
-  
+
 #app {
+  
 }
 </style>

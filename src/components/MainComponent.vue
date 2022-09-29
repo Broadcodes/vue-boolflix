@@ -1,19 +1,23 @@
 <template>
   <div>
-    <div class="card" v-for="(item, index) in dataListObj" :key="item.id">
-
-      <div v-if="index < (dataListObj.length / 2)">
-        <p>Titolo: {{ item.title }}</p>
-        <p>Titolo Originale: {{ item.original_title }}</p>
-        <img :src="setFlagIcon(item.original_language)" :alt="item.title" @error="replaceFlagNotFound">
+    <div class="containerCard">
+      <div class="card" v-for="(item, index) in dataListObj" :key="item.id">
+        <img :src="getPosterPath('w185', item.poster_path)" :alt="item.title" />
+        <div v-if="index < dataListObj.length / 2">
+          <p>Titolo Movie: {{ item.title }}</p>
+          <p>Titolo Originale: {{ item.original_title }}</p>
+        </div>
+        <div v-else>
+          <p>Titolo Serie: {{ item.name }}</p>
+          <p>Titolo Originale: {{ item.original_name }}</p>
+        </div>
+        <img
+          :src="setFlagIcon(item.original_language)"
+          :alt="item.name"
+          @error="replaceFlagNotFound"
+        />
         <p>Voto: {{ item.vote_average }}</p>
       </div>
-      <div v-else>
-        <p>Titolo: {{ item.name }}</p>
-        <p>Titolo Originale: {{ item.original_name }}</p>
-        <img :src="setFlagIcon(item.original_language)" :alt="item.name" @error="replaceFlagNotFound">
-        <p>Voto: {{ item.vote_average }}</p>
-      </div>      
     </div>
   </div>
 </template>
@@ -23,23 +27,28 @@ import errorFlagIcon from "@/assets/ErrorFlag/world.png";
 
 export default {
   data() {
-    return {
-        
-    };
+    return {};
   },
-  methods:{
-    setFlagIcon(country){
+  methods: {
+    getPosterPath(size, posterPath) {
+      return `https://image.tmdb.org/t/p/${size}${posterPath}`;
+    },
+    setFlagIcon(country) {
       switch (country) {
-        case 'en':
-          country = 'GB';
+        case "en":
+          country = "GB";
           break;
       }
 
-        return "https://www.countryflagicons.com/FLAT/32/" + country.toUpperCase() + ".png";
+      return (
+        "https://www.countryflagicons.com/FLAT/32/" +
+        country.toUpperCase() +
+        ".png"
+      );
     },
-    replaceFlagNotFound(e){
-        e.target.src = errorFlagIcon;
-    }
+    replaceFlagNotFound(e) {
+      e.target.src = errorFlagIcon;
+    },
   },
   props: {
     dataListObj: Array,
@@ -48,11 +57,27 @@ export default {
 </script>
   
   <style lang="scss" scoped>
-    .card{
-      border: 1px solid #000;
-      padding: 20px 50px;
-      width: 40%;
-      margin: 50px;
-      background-color: #eee;
-    }
+.containerCard{
+  display: flex;
+  flex-wrap: wrap;
+
+  .card {
+  border: 1px solid #000;
+  padding: 40px 50px 20px;
+  width: calc(100% /3 - 100px);
+  text-align: center;
+  margin: 50px;
+  background-color: #eee;
+
+  img:nth-child(1){
+    padding-bottom: 20px;
+  }
+
+  p {
+    text-align: left;
+  }
+}
+}
+
+
 </style>

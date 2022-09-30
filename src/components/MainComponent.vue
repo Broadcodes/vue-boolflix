@@ -14,10 +14,10 @@
           <p v-if="(parseInt(currentPage) - 1) != 0">{{parseInt(currentPage) - 1}}</p>
           <p v-else></p>
           <p>{{currentPage}}</p>
-          <p v-if="currentPage < maxPage">{{parseInt(currentPage) + 1}}</p>
+          <p v-if="parseInt(currentPage) < maxPage">{{parseInt(currentPage) + 1}}</p>
           <p v-else></p>
         </div>
-        <i v-if="currentPage < maxPage" class="fa-solid fa-angle-right" @click="nextPage"></i>
+        <i v-if="parseInt(currentPage) < maxPage" class="fa-solid fa-angle-right" @click="nextPage"></i>
         <i v-else></i>
       </div>
     </div>

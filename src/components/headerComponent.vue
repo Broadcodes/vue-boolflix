@@ -107,7 +107,7 @@ header {
       align-items: center;
       top: 50%;
       transform: translateY(-15px);
-      right: 230px;
+      right: 180px;
       overflow: hidden;
       transition: width 1s;
 

@@ -123,7 +123,12 @@ export default {
         object-fit: cover;
     }
 
+    &:hover .areaDescription{
+        display: inline-block;
+    }
+
     .areaDescription {
+        display: none;
         position: absolute;
         top: 0px;
         left: 0px;

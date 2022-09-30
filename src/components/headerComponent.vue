@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img class="logo" src="../assets/img/boolflix_logo.png" alt="Boolflix">
+    <a href=""><img class="logo" src="../assets/img/boolflix_logo.png" alt="Boolflix"></a>
     <div class="navigationBar">
       <div class="navSx">
         <ul>

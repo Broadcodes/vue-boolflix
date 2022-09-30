@@ -19,7 +19,7 @@ aggiuntive già prese nei punti precedenti più la overview -->
 
     <main>
       <HomepageContainer v-if="dataSearchArr.length === 0" />
-      <MainComponent v-else :dataListObj="dataSearchArr" />
+      <MainComponent v-else :dataListObj="dataSearchArr" :currentPage="page" @changePage="getNewPage"/>
     </main>
   </div>
 </template>
@@ -38,6 +38,7 @@ export default {
     return {
       query: "",
       dataSearchArr: [],
+      page: '1'
     };
   },
   methods: {
@@ -50,7 +51,7 @@ export default {
         // L'url di seguito ha la query esterna in quanto verrà modificata dall'utente in base alla ricerca dei film che vorrà eseguire
         axios
           .get(
-            `https://api.themoviedb.org/3/search/${typeSearch[index]}?api_key=${apiKey}&language=it-IT&page=1&include_adult=false&query=${this.query}`
+            `https://api.themoviedb.org/3/search/${typeSearch[index]}?api_key=${apiKey}&language=it-IT&page=${this.page}&include_adult=false&query=${this.query}`
           )
           .then(({ data, status }) => {
             if (status === 200) {
@@ -70,6 +71,12 @@ export default {
       this.query = textSearch;
       this.dataSearchArr = this.getApiData();
     },
+    getNewPage(page){
+      console.log(page);
+      this.page = page;
+
+      this.getSearchMovies(this.query);
+    }
   },
   components: {
     HeaderComponent,

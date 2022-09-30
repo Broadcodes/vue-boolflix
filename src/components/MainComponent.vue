@@ -1,10 +1,23 @@
 <template>
   <div>
-    <div class="containerCard">
-      <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie"
-        :indexMoviesData="index" />
-      <CardSeries v-for="(cardSerie, index) in dataListObj" :key="cardSerie.id" :cardSeriesData="cardSerie"
-        :indexSeriesData="index" />
+    <div class="bg-mainCard">
+      <div class="containerCard">
+        <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie"
+          :indexMoviesData="index" />
+        <CardSeries v-for="(cardSerie, index) in dataListObj" :key="cardSerie.id" :cardSeriesData="cardSerie"
+          :indexSeriesData="index" />
+      </div>
+      <div class="page">
+        <i v-if="(parseInt(currentPage) - 1) != 0" class="fa-solid fa-angle-left" @click="prevPage"></i>
+        <i v-else></i>
+        <div class="numberPage">
+          <p v-if="(parseInt(currentPage) - 1) != 0">{{parseInt(currentPage) - 1}}</p>
+          <p v-else></p>
+          <p>{{currentPage}}</p>
+          <p>{{parseInt(currentPage) + 1}}</p>
+        </div>
+        <i class="fa-solid fa-angle-right" @click="nextPage"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -20,22 +33,64 @@ export default {
   },
   props: {
     dataListObj: Array,
+    currentPage: String
   },
   components: {
     CardMovies,
     CardSeries
+  },
+  methods: {
+    prevPage() {
+      this.$emit('changePage', (parseInt(this.currentPage) - 1).toString());
+    },
+    nextPage() {
+      this.$emit('changePage', (parseInt(this.currentPage) + 1).toString());
+    }
   }
 };
 </script>
   
 <style lang="scss" scoped>
-.containerCard {
-  display: flex;
-  flex-wrap: wrap;
+.bg-mainCard {
   height: calc(100vh - 65px);
-  padding: 10px 30px;
   overflow-y: scroll;
   background: rgb(20, 20, 20);
   background: linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgb(90, 90, 90) 100%);
+
+  .containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 30px 50px;
+  }
+
+  .page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -30px;
+    color: #fff;
+    font-size: 1.5rem;
+
+    i {
+      margin: 0 100px;
+      cursor: pointer;
+    }
+
+    .numberPage {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 150px;
+
+      p:nth-of-type(odd) {
+        font-size: 1.2rem;
+      }
+
+      p:nth-of-type(even) {
+        font-size: 2.5rem;
+      }
+    }
+  }
 }
 </style>

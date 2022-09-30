@@ -2,8 +2,8 @@
     <div class="card" v-if="indexSeriesData > 19">
         <img id="poster" :src="getPosterPath('w342', cardSeriesData.poster_path)" :alt="cardSeriesData.title"
         @error="changeImgPoster"/>
+        
         <div class="areaDescription">
-
             <div v-if="cardSeriesData.name === cardSeriesData.original_name">
                 <p>Titolo Serie: {{ cardSeriesData.name }}</p>
             </div>
@@ -58,6 +58,7 @@
             </div>
             <p>{{cardSeriesData.overview}}</p>
         </div>
+        <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right"></i>
     </div>
 </template>
 
@@ -126,6 +127,44 @@ export default {
     &:hover .areaDescription{
         display: inline-block;
     }
+
+    #showMoreInfo {
+        display: none;
+    }
+
+    &:hover #showMoreInfo {
+        display: inline-block;
+        font-size: 1.8rem;
+        position: absolute;
+        bottom: 30px;
+        color: #fff;
+        animation: backAndForth linear 0.85s infinite;
+        cursor: pointer;
+
+        &:hover{
+            color: rgb(209, 209, 209);
+        }
+    }
+
+    @keyframes backAndForth {
+            0% {
+                right: 15%
+            }
+
+            ;
+
+            50% {
+                right: 10%
+            }
+
+            ;
+
+            100% {
+                right: 15%
+            }
+
+            ;
+        }
 
     .areaDescription {
         display: none;

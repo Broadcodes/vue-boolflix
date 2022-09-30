@@ -14,6 +14,7 @@
       <div class="navDx">
         <ul>
           <li><i class="fa-solid fa-magnifying-glass" @click="viewSearch"></i></li>
+          <!-- <li><i class="fa-solid fa-filter" @click="filterSearch"></i></li> -->
           <li><i class="fa-solid fa-bell"></i></li>
           <li><img src="https://picsum.photos/200/300?random=0" alt="My Profile"></li>
         </ul>
@@ -23,8 +24,6 @@
         </div>
       </div>
     </div>
-
-
   </header>
 </template>
 
@@ -35,11 +34,13 @@ export default {
     return {
       searchMoviesText: '',
       viewAreaSearchBox: false,
+      // viewAreaFilterSearchBox: false
     };
   },
   methods: {
     searchUserMovies() {
       this.$emit('searchMovies', this.searchMoviesText);
+      this.searchMoviesText = '';
     },
     viewSearch() {
       const areaSearchBox = document.querySelector(".searchMoviesAndSeries");
@@ -51,7 +52,18 @@ export default {
         this.viewAreaSearchBox = true;
         areaSearchBox.classList.add("view");
       }
-    }
+    },
+    // filterSearch() {
+    //   const areaSearchBox = document.querySelector(".searchMoviesAndSeries");
+
+    //   if (this.viewAreaFilterSearchBox) {
+    //     this.viewAreaFilterSearchBox = false;
+    //     areaSearchBox.classList.remove("view");
+    //   } else {
+    //     this.viewAreaFilterSearchBox = true;
+    //     areaSearchBox.classList.add("view");
+    //   }
+    // }
   },
   props: {
     listMoviesArr: Array
@@ -95,7 +107,7 @@ header {
       align-items: center;
       top: 50%;
       transform: translateY(-15px);
-      right: 200px;
+      right: 230px;
       overflow: hidden;
       transition: width 1s;
 

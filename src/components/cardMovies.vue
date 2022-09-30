@@ -1,9 +1,9 @@
 <template>
     <div class="card" v-if="indexMoviesData < 20">
         <img id="poster" :src="getPosterPath('w342', cardMoviesData.poster_path)" :alt="cardMoviesData.title"
-        @error="changeImgPoster"/>
-        <div class="areaDescription">
+            @error="changeImgPoster" />
 
+        <div class="areaDescription">
             <div v-if="cardMoviesData.title === cardMoviesData.original_title">
                 <p>Titolo Movie: {{ cardMoviesData.title }}</p>
             </div>
@@ -13,8 +13,8 @@
             </div>
 
             <p>Language:
-                <img :src="setFlagIcon(cardMoviesData.original_language)" :alt="cardMoviesData.original_language" 
-                @error="changeImg"/>
+                <img :src="setFlagIcon(cardMoviesData.original_language)" :alt="cardMoviesData.original_language"
+                    @error="changeImg" />
             </p>
 
             <div>
@@ -58,6 +58,11 @@
             </div>
             <p>{{cardMoviesData.overview}}</p>
         </div>
+        <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right" @click="btnShowMore"></i>
+        <div id="showMore">
+            <!-- N -->
+            <p>prova test</p>
+        </div>
     </div>
 </template>
 
@@ -99,32 +104,75 @@ export default {
                 ".png"
             );
         },
-        changeImg(e){
+        changeImg(e) {
             e.target.src = "https://w7.pngwing.com/pngs/655/930/png-transparent-false-error-missing-absent-x-red-cross-letter-circle-gui-thumbnail.png";
         },
-        changeImgPoster(e){
+        changeImgPoster(e) {
             e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
-        }
+        },
+        btnShowMore() {
+            document.getElementById("showMore").classList.add("view");
+        },
     },
 }
 </script>
 
 <style lang="scss" scoped>
 .card {
+    display: flex;
     height: 515px;
     position: relative;
     margin: 10px auto;
     text-align: center;
 
-    #poster{
+    #poster {
         min-width: 342px;
         max-width: 342px;
         height: 100%;
         object-fit: cover;
     }
 
-    &:hover .areaDescription{
+    &:hover .areaDescription {
         display: inline-block;
+    }
+
+    #showMoreInfo {
+        display: none;
+    }
+
+    &:hover #showMoreInfo {
+        display: inline-block;
+        font-size: 1.8rem;
+        position: absolute;
+        padding: 15px;
+        bottom: 15px;
+        color: #fff;
+        animation: backAndForth linear 0.85s infinite;
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(209, 209, 209);
+        }
+    }
+
+    @keyframes backAndForth {
+        0% {
+            left: calc(342px - 100px);
+        }
+
+        ;
+
+        50% {
+            left: calc(342px - 80px);
+        }
+
+        ;
+
+        100% {
+            left: calc(342px - 100px);
+        }
+
+        ;
     }
 
     .areaDescription {
@@ -133,7 +181,8 @@ export default {
         top: 0px;
         left: 0px;
         padding: 40px 30px;
-        width: 100%;
+        min-width: 342px;
+        max-width: 342px;
         height: 100%;
         color: #fff;
         background-color: rgba(0, 0, 0, 0.7);
@@ -174,5 +223,21 @@ export default {
     .starGray {
         color: rgb(199, 199, 199);
     }
+
+    #showMore {
+        display: none;
+    }
+
+    #showMore.view {
+        display: inline-block;
+        margin-left: 20px;
+        width: calc(342px * 2);
+        background: rgb(20, 20, 20);
+        background: linear-gradient(270deg, rgba(50, 50, 50, 0) 0%, rgba(0, 0, 0, 1) 100%);
+        color: #fff;
+        padding: 50px;
+    }
+
+
 }
 </style>

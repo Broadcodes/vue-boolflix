@@ -91,6 +91,24 @@ export default {
   }
 
 #app {
-  
+  ::-webkit-scrollbar {
+  width: 0.8em;
+  height: 0.8em;
+  background: #686868;
+  margin-right: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 0.8em;
+  min-width: 0.8em;
+  -webkit-border-radius: 10px;
+  background-color: #cfcfcf;
+  border: none;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #adadad;
+  border: none;
+}
 }
 </style>

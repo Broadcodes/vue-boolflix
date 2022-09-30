@@ -1,6 +1,7 @@
 <template>
     <div class="card" v-if="indexSeriesData > 19">
-        <img :src="getPosterPath('w342', cardSeriesData.poster_path)" :alt="cardSeriesData.title" />
+        <img id="poster" :src="getPosterPath('w342', cardSeriesData.poster_path)" :alt="cardSeriesData.title"
+        @error="changeImgPoster"/>
         <div class="areaDescription">
 
             <div v-if="cardSeriesData.name === cardSeriesData.original_name">
@@ -100,6 +101,9 @@ export default {
         },
         changeImg(e){
             e.target.src = "https://w7.pngwing.com/pngs/655/930/png-transparent-false-error-missing-absent-x-red-cross-letter-circle-gui-thumbnail.png";
+        },
+        changeImgPoster(e){
+            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
         }
     },
 }
@@ -111,6 +115,13 @@ export default {
     position: relative;
     margin: 10px auto;
     text-align: center;
+
+    #poster{
+        min-width: 342px;
+        max-width: 342px;
+        height: 100%;
+        object-fit: cover;
+    }
 
     .areaDescription {
         position: absolute;

@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="containerCard">
-      <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie" :indexMoviesData="index"/>
-      <CardSeries v-for="(cardSerie, index) in dataListObj" :key="cardSerie.id" :cardSeriesData="cardSerie" :indexSeriesData="index"/>
+      <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie"
+        :indexMoviesData="index" />
+      <CardSeries v-for="(cardSerie, index) in dataListObj" :key="cardSerie.id" :cardSeriesData="cardSerie"
+        :indexSeriesData="index" />
     </div>
   </div>
 </template>
@@ -13,16 +15,16 @@ import CardSeries from "@/components/cardSeries";
 
 export default {
   name: 'MainComponent',
-    data() {
-        return {};
-    },
-    props: {
-        dataListObj: Array,
-    },
-    components: { 
-      CardMovies,
-      CardSeries
-    }
+  data() {
+    return {};
+  },
+  props: {
+    dataListObj: Array,
+  },
+  components: {
+    CardMovies,
+    CardSeries
+  }
 };
 </script>
   

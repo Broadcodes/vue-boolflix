@@ -1,8 +1,8 @@
 <template>
     <div class="card" v-if="indexSeriesData > 19">
         <img id="poster" :src="getPosterPath('w342', cardSeriesData.poster_path)" :alt="cardSeriesData.title"
-        @error="changeImgPoster"/>
-        
+            @error="changeImgPoster" />
+
         <div class="areaDescription">
             <div v-if="cardSeriesData.name === cardSeriesData.original_name">
                 <p>Titolo Serie: {{ cardSeriesData.name }}</p>
@@ -14,49 +14,53 @@
 
             <p>Language:
                 <img :src="setFlagIcon(cardSeriesData.original_language)" :alt="cardSeriesData.original_language"
-                @error="changeImg"/>
+                    @error="changeImg" />
             </p>
 
             <div>
                 <p id="vote">Vote:
-                    <span v-if="toFiveStars(cardSeriesData.vote_average) === 1">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
+                    <span v-if="cardSeriesData.vote_average != ''">
+                        <span v-if="toFiveStars(cardSeriesData.vote_average) === 1">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 2">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 3">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 4">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 5">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                        </span>
                     </span>
-                    <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 2">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                    </span>
-                    <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 3">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                    </span>
-                    <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 4">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                    </span>
-                    <span v-else-if="toFiveStars(cardSeriesData.vote_average) === 5">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                    </span>
+                    <span v-else>Dato non presente</span>
                 </p>
             </div>
-            <p>{{cardSeriesData.overview}}</p>
+            <p v-if="cardSeriesData.overview != ''">Trama: {{cardSeriesData.overview}}</p>
+            <p v-else>Trama: Dato non presente</p>
         </div>
         <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right"></i>
     </div>
@@ -100,10 +104,10 @@ export default {
                 ".png"
             );
         },
-        changeImg(e){
+        changeImg(e) {
             e.target.src = "https://w7.pngwing.com/pngs/655/930/png-transparent-false-error-missing-absent-x-red-cross-letter-circle-gui-thumbnail.png";
         },
-        changeImgPoster(e){
+        changeImgPoster(e) {
             e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
         }
     },
@@ -117,14 +121,14 @@ export default {
     margin: 10px auto;
     text-align: center;
 
-    #poster{
+    #poster {
         min-width: 342px;
         max-width: 342px;
         height: 100%;
         object-fit: cover;
     }
 
-    &:hover .areaDescription{
+    &:hover .areaDescription {
         display: inline-block;
     }
 
@@ -141,30 +145,30 @@ export default {
         animation: backAndForth linear 0.85s infinite;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
             color: rgb(209, 209, 209);
         }
     }
 
     @keyframes backAndForth {
-            0% {
-                right: 15%
-            }
-
-            ;
-
-            50% {
-                right: 10%
-            }
-
-            ;
-
-            100% {
-                right: 15%
-            }
-
-            ;
+        0% {
+            right: 15%
         }
+
+        ;
+
+        50% {
+            right: 10%
+        }
+
+        ;
+
+        100% {
+            right: 15%
+        }
+
+        ;
+    }
 
     .areaDescription {
         display: none;

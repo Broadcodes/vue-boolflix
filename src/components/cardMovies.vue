@@ -19,50 +19,53 @@
 
             <div>
                 <p id="vote">Vote:
-                    <span v-if="toFiveStars(cardMoviesData.vote_average) === 1">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
+                    <span v-if="cardMoviesData.vote_average != ''">
+                        <span v-if="toFiveStars(cardMoviesData.vote_average) === 1">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 2">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 3">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 4">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starGray fa-regular fa-star"></i>
+                        </span>
+                        <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 5">
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                            <i class="starYellow fa-solid fa-star"></i>
+                        </span>
                     </span>
-                    <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 2">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                    </span>
-                    <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 3">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                    </span>
-                    <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 4">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starGray fa-regular fa-star"></i>
-                    </span>
-                    <span v-else-if="toFiveStars(cardMoviesData.vote_average) === 5">
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                        <i class="starYellow fa-solid fa-star"></i>
-                    </span>
+                    <span v-else>Dato non presente</span>
                 </p>
             </div>
-            <p>{{cardMoviesData.overview}}</p>
+            <p v-if="cardMoviesData.overview != ''">Trama: {{cardMoviesData.overview}}</p>
+            <p v-else>Trama: Dato non presente</p>
         </div>
         <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right" @click="btnShowMore"></i>
-        <div id="showMore">
-            <!-- N -->
+        <!-- <div id="showMore">
             <p>prova test</p>
-        </div>
+        </div> -->
     </div>
 </template>
 

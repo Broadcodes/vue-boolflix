@@ -14,9 +14,11 @@
           <p v-if="(parseInt(currentPage) - 1) != 0">{{parseInt(currentPage) - 1}}</p>
           <p v-else></p>
           <p>{{currentPage}}</p>
-          <p>{{parseInt(currentPage) + 1}}</p>
+          <p v-if="currentPage < maxPage">{{parseInt(currentPage) + 1}}</p>
+          <p v-else></p>
         </div>
-        <i class="fa-solid fa-angle-right" @click="nextPage"></i>
+        <i v-if="currentPage < maxPage" class="fa-solid fa-angle-right" @click="nextPage"></i>
+        <i v-else></i>
       </div>
     </div>
   </div>
@@ -33,7 +35,8 @@ export default {
   },
   props: {
     dataListObj: Array,
-    currentPage: String
+    currentPage: String,
+    maxPage: Number
   },
   components: {
     CardMovies,

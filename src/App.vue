@@ -19,7 +19,7 @@ aggiuntive già prese nei punti precedenti più la overview -->
 
     <main>
       <HomepageContainer v-if="dataSearchArr.length === 0" />
-      <MainComponent v-else :dataListObj="dataSearchArr" :currentPage="page" @changePage="getNewPage"/>
+      <MainComponent v-else :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage" @changePage="getNewPage"/>
     </main>
   </div>
 </template>
@@ -38,7 +38,8 @@ export default {
     return {
       query: "",
       dataSearchArr: [],
-      page: '1'
+      page: '1',
+      maxPage: 0
     };
   },
   methods: {
@@ -57,6 +58,7 @@ export default {
             if (status === 200) {
               // Assegno i dati contenuti nell'array di oggetti contenuto nell'API alla variabile globale di tipo Array
               arr.push(...data.results);
+              this.maxPage += parseInt(data.total_pages);
             }
           })
           .catch((e) => {
@@ -72,9 +74,7 @@ export default {
       this.dataSearchArr = this.getApiData();
     },
     getNewPage(page){
-      console.log(page);
       this.page = page;
-
       this.getSearchMovies(this.query);
     }
   },

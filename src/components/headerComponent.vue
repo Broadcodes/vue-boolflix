@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  name: 'headerComponent',
   data() {
     return {
       searchMoviesText: '',
@@ -45,11 +46,9 @@ export default {
 
       if (this.viewAreaSearchBox) {
         this.viewAreaSearchBox = false;
-        console.log(this.viewAreaSearchBox);
         areaSearchBox.classList.remove("view");
       } else {
         this.viewAreaSearchBox = true;
-        console.log(this.viewAreaSearchBox);
         areaSearchBox.classList.add("view");
       }
     }
@@ -66,6 +65,7 @@ export default {
 header {
   background-color: #141414;
   width: 100%;
+  height: 65px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -68,7 +68,6 @@ export default {
       // Ottengo dall'input presente in headerComponent il valore che viene digitato dall'utente
       // Il dato che mi arriva viene inserito nella query in modo da ottenere la ricerca dei film
       this.query = textSearch;
-
       this.dataSearchArr = this.getApiData();
     },
   },

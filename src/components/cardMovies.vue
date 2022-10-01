@@ -5,11 +5,14 @@
 
         <div class="areaDescription">
             <div v-if="cardMoviesData.title === cardMoviesData.original_title">
-                <p>Titolo Movie: {{ cardMoviesData.title }}</p>
+                <p v-if="cardMoviesData.title != ''">Titolo: {{ cardMoviesData.title }}</p>
+                <p v-else>Titolo: Dato non presente</p>
             </div>
             <div v-else>
-                <p>Titolo Movie: {{ cardMoviesData.title }}</p>
-                <p>Titolo Originale: {{ cardMoviesData.original_title }}</p>
+                <p v-if="cardMoviesData.title != ''">Titolo: {{ cardMoviesData.title }}</p>
+                <p v-else>Titolo: Dato non presente</p>
+                <p v-if="cardMoviesData.original_title != ''">Titolo originale: {{ cardMoviesData.original_title }}</p>
+                <p v-else>Titolo originale: Dato non presente</p>
             </div>
 
             <p>Language:
@@ -62,7 +65,7 @@
             <p v-if="cardMoviesData.overview != ''">Trama: {{cardMoviesData.overview}}</p>
             <p v-else>Trama: Dato non presente</p>
         </div>
-        <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right" @click="btnShowMore"></i>
+        <!-- <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right" @click="btnShowMore"></i> -->
         <!-- <div id="showMore">
             <p>prova test</p>
         </div> -->
@@ -139,44 +142,44 @@ export default {
         display: inline-block;
     }
 
-    #showMoreInfo {
-        display: none;
-    }
+    // #showMoreInfo {
+    //     display: none;
+    // }
 
-    &:hover #showMoreInfo {
-        display: inline-block;
-        font-size: 1.8rem;
-        position: absolute;
-        padding: 15px;
-        bottom: 15px;
-        color: #fff;
-        animation: backAndForth linear 0.85s infinite;
-        cursor: pointer;
+    // &:hover #showMoreInfo {
+    //     display: inline-block;
+    //     font-size: 1.8rem;
+    //     position: absolute;
+    //     padding: 15px;
+    //     bottom: 15px;
+    //     color: #fff;
+    //     animation: backAndForth linear 0.85s infinite;
+    //     cursor: pointer;
 
-        &:hover {
-            color: rgb(209, 209, 209);
-        }
-    }
+    //     &:hover {
+    //         color: rgb(209, 209, 209);
+    //     }
+    // }
 
-    @keyframes backAndForth {
-        0% {
-            left: calc(342px - 100px);
-        }
+    // @keyframes backAndForth {
+    //     0% {
+    //         left: calc(342px - 100px);
+    //     }
 
-        ;
+    //     ;
 
-        50% {
-            left: calc(342px - 80px);
-        }
+    //     50% {
+    //         left: calc(342px - 80px);
+    //     }
 
-        ;
+    //     ;
 
-        100% {
-            left: calc(342px - 100px);
-        }
+    //     100% {
+    //         left: calc(342px - 100px);
+    //     }
 
-        ;
-    }
+    //     ;
+    // }
 
     .areaDescription {
         display: none;
@@ -227,19 +230,19 @@ export default {
         color: rgb(199, 199, 199);
     }
 
-    #showMore {
-        display: none;
-    }
+    // #showMore {
+    //     display: none;
+    // }
 
-    #showMore.view {
-        display: inline-block;
-        margin-left: 20px;
-        width: calc(342px * 2);
-        background: rgb(20, 20, 20);
-        background: linear-gradient(270deg, rgba(50, 50, 50, 0) 0%, rgba(0, 0, 0, 1) 100%);
-        color: #fff;
-        padding: 50px;
-    }
+    // #showMore.view {
+    //     display: inline-block;
+    //     margin-left: 20px;
+    //     width: calc(342px * 2);
+    //     background: rgb(20, 20, 20);
+    //     background: linear-gradient(270deg, rgba(50, 50, 50, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    //     color: #fff;
+    //     padding: 50px;
+    // }
 
 
 }

@@ -5,11 +5,14 @@
 
         <div class="areaDescription">
             <div v-if="cardSeriesData.name === cardSeriesData.original_name">
-                <p>Titolo Serie: {{ cardSeriesData.name }}</p>
+                <p v-if="cardSeriesData.name!= ''">Titolo: {{ cardSeriesData.name }}</p>
+                <p v-else>Titolo: Dato non presente</p>
             </div>
             <div v-else>
-                <p>Titolo Serie: {{ cardSeriesData.name }}</p>
-                <p>Titolo Originale: {{ cardSeriesData.original_name }}</p>
+                <p v-if="cardSeriesData.name!= ''">Titolo: {{ cardSeriesData.name }}</p>
+                <p v-else>Titolo: Dato non presente</p>
+                <p v-if="cardSeriesData.original_name!= ''">Titolo originale: {{ cardSeriesData.original_name }}</p>
+                <p v-else>Titolo originale: Dato non presente</p>
             </div>
 
             <p>Language:
@@ -62,7 +65,7 @@
             <p v-if="cardSeriesData.overview != ''">Trama: {{cardSeriesData.overview}}</p>
             <p v-else>Trama: Dato non presente</p>
         </div>
-        <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right"></i>
+        <!-- <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right"></i> -->
     </div>
 </template>
 
@@ -132,43 +135,43 @@ export default {
         display: inline-block;
     }
 
-    #showMoreInfo {
-        display: none;
-    }
+    // #showMoreInfo {
+    //     display: none;
+    // }
 
-    &:hover #showMoreInfo {
-        display: inline-block;
-        font-size: 1.8rem;
-        position: absolute;
-        bottom: 30px;
-        color: #fff;
-        animation: backAndForth linear 0.85s infinite;
-        cursor: pointer;
+    // &:hover #showMoreInfo {
+    //     display: inline-block;
+    //     font-size: 1.8rem;
+    //     position: absolute;
+    //     bottom: 30px;
+    //     color: #fff;
+    //     animation: backAndForth linear 0.85s infinite;
+    //     cursor: pointer;
 
-        &:hover {
-            color: rgb(209, 209, 209);
-        }
-    }
+    //     &:hover {
+    //         color: rgb(209, 209, 209);
+    //     }
+    // }
 
-    @keyframes backAndForth {
-        0% {
-            right: 15%
-        }
+    // @keyframes backAndForth {
+    //     0% {
+    //         right: 15%
+    //     }
 
-        ;
+    //     ;
 
-        50% {
-            right: 10%
-        }
+    //     50% {
+    //         right: 10%
+    //     }
 
-        ;
+    //     ;
 
-        100% {
-            right: 15%
-        }
+    //     100% {
+    //         right: 15%
+    //     }
 
-        ;
-    }
+    //     ;
+    // }
 
     .areaDescription {
         display: none;

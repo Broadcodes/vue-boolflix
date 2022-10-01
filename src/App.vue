@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <header>
-      <HeaderComponent
-        :listMoviesObj="dataSearchArr"
-        @searchMovies="getSearchMovies"
-      />
-    </header>
+    <div v-if="playIntro === true" class="conteinerIntro">
+      <video id="intro" autoplay muted>
+        <source src="@/assets/img/Netflix_intro.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div v-else>
+      <header>
+        <HeaderComponent :listMoviesObj="dataSearchArr" @searchMovies="getSearchMovies" />
+      </header>
 
-    <main>
-      <HomepageContainer v-if="dataSearchArr.length === 0" />
-      <MainComponent v-else :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage" @changePage="getNewPage"/>
-    </main>
+      <main>
+        <HomepageContainer v-if="dataSearchArr.length === 0" />
+        <MainComponent v-else :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage"
+          @changePage="getNewPage" />
+      </main>
+    </div>
   </div>
 </template>
 
@@ -29,7 +34,8 @@ export default {
       query: "",
       dataSearchArr: [],
       page: '1',
-      maxPage: 0
+      maxPage: 0,
+      playIntro: true
     };
   },
   methods: {
@@ -63,7 +69,7 @@ export default {
       this.query = textSearch;
       this.dataSearchArr = this.getApiData();
     },
-    getNewPage(page){
+    getNewPage(page) {
       this.page = page;
       this.getSearchMovies(this.query);
     }
@@ -73,39 +79,65 @@ export default {
     HomepageContainer,
     MainComponent,
   },
+  mounted() {
+    setInterval(() => {
+      document.getElementById('intro').classList.add('opacityIn');
+    }, 4000);
+
+    setInterval(() => {
+      this.playIntro = false;
+    }, 4200);
+  }
 };
 </script>
 
 <style lang="scss">
-  * {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  body {
-    font-family: sans-serif;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: sans-serif;
+}
 
 #app {
+  .conteinerIntro {
+    height: 100vh;
+    overflow: hidden;
+
+    video {
+      width: 100%;
+      object-fit: cover;
+      opacity: 100%;
+      transition: opacity 1s;
+    }
+
+    .opacityIn {
+      opacity: 0%;
+    }
+
+  }
+
   ::-webkit-scrollbar {
-  width: 0.8em;
-  height: 0.8em;
-  background: #686868;
-  margin-right: 10px;
-}
+    width: 0.8em;
+    height: 0.8em;
+    background: #686868;
+    margin-right: 10px;
+  }
 
-::-webkit-scrollbar-thumb {
-  min-height: 0.8em;
-  min-width: 0.8em;
-  -webkit-border-radius: 10px;
-  background-color: #cfcfcf;
-  border: none;
-}
+  ::-webkit-scrollbar-thumb {
+    min-height: 0.8em;
+    min-width: 0.8em;
+    -webkit-border-radius: 10px;
+    background-color: #cfcfcf;
+    border: none;
+  }
 
-::-webkit-scrollbar-thumb:active {
-  background-color: #adadad;
-  border: none;
-}
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #adadad;
+    border: none;
+  }
 }
 </style>

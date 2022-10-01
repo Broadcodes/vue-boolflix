@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-mainCard">
+    <div class="bg-page">
       <div class="containerCard">
         <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie"
           :indexMoviesData="index" />
@@ -54,12 +54,7 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-.bg-mainCard {
-  height: calc(100vh - 65px);
-  overflow-y: scroll;
-  background: rgb(20, 20, 20);
-  background: linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgb(90, 90, 90) 100%);
-
+.bg-page {
   .containerCard {
     display: flex;
     flex-wrap: wrap;

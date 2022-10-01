@@ -103,6 +103,13 @@ body {
 }
 
 #app {
+  .bg-page {
+    height: calc(100vh - 65px);
+    overflow-y: scroll;
+    background: rgb(20, 20, 20);
+    background: linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgb(90, 90, 90) 100%);
+  }
+
   .conteinerIntro {
     height: 100vh;
     overflow: hidden;

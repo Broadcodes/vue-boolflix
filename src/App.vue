@@ -81,10 +81,6 @@ export default {
   },
   mounted() {
     setInterval(() => {
-      document.getElementById('intro').classList.add('opacityIn');
-    }, 4000);
-
-    setInterval(() => {
       this.playIntro = false;
     }, 4200);
   }
@@ -107,7 +103,7 @@ body {
     height: calc(100vh - 65px);
     overflow-y: scroll;
     background: rgb(20, 20, 20);
-    background: linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgb(90, 90, 90) 100%);
+    background: linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgb(24, 24, 24) 100%);
   }
 
   .conteinerIntro {
@@ -116,13 +112,14 @@ body {
 
     video {
       width: 100%;
+      height: 100%;
       object-fit: cover;
-      opacity: 100%;
-      transition: opacity 1s;
+      visibility: 100%;
+      transition: visibility 1s;
     }
 
-    .opacityIn {
-      opacity: 0%;
+    .visibilityIn {
+      visibility: 0%;
     }
 
   }

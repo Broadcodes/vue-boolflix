@@ -1,10 +1,12 @@
 <template>
   <div class="bg-page">
     <!-- Slider con effetto specchio -->
-    <CarouselHomePage />
+    <CarouselHomePage/>
     <!-- i più visti -->
+    <h2>I più visti</h2>
     <TheMostViewed />
     <!-- i più votati -->
+    <h2>I più votati</h2>
     <TheMostVoted />
     <h2>Movies</h2>
     <!-- Movie -->
@@ -35,7 +37,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.homepage {
-  // background-color: #141414;
+h2 {
+  color: #fff;
+  padding: 20px;
+  font-size: 1.3rem;
 }
 </style>

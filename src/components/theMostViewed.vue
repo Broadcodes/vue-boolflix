@@ -4,8 +4,14 @@
       <div v-for="(card, index) in getSort()" :key="index">
         <div class="card">
           <img :src="getPosterPath('w300', card.backdrop_path)" :alt="card.title">
-          <h2>{{card.title}}</h2>
-          <h2>{{card.name}}</h2>
+          
+          <div v-if="card.title !== '' || card.name !== '' ">
+            <h2>{{card.title}}</h2>
+            <h2>{{card.name}}</h2>
+          </div>
+          <div v-else>
+            <h2>Dato non presente</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -62,6 +68,11 @@ export default {
   .card {
     margin: 0 20px;
 
+    img {
+      min-width: 300px;
+      min-height: 169px;
+    }
+
     h2 {
       font-size: 1.3rem;
       margin: 10px 0;
@@ -70,6 +81,6 @@ export default {
 }
 
 ::-webkit-scrollbar {
-    height: 0.4em !important;
+    height: 0.5em !important;
   }
 </style>

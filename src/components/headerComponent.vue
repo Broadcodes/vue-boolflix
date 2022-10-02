@@ -1,14 +1,14 @@
 <template>
   <header>
-    <a href=""><img class="logo" src="../assets/img/boolflix_logo.png" alt="Boolflix"></a>
+    <img @click="getValuePage('home')" class="logo" src="../assets/img/boolflix_logo.png" alt="Boolflix">
     <div class="navigationBar">
       <div class="navSx">
         <ul>
-          <li>Home</li>
-          <li>Serie</li>
-          <li>Film</li>
-          <li>Aggiunti di recente</li>
-          <li>La mia lista</li>
+          <li id="home" class="active" @click="getValuePage('home')">Home</li>
+          <li id="series" @click="getValuePage('series')">Serie</li>
+          <li id="movies" @click="getValuePage('movies')">Film</li>
+          <li id="recentlyAdded" @click="getValuePage('recentlyAdded')">Aggiunti di recente</li>
+          <li id="myList" @click="getValuePage('myList')">La mia lista</li>
         </ul>
       </div>
       <div class="navDx">
@@ -18,7 +18,7 @@
           <li><i class="fa-solid fa-bell"></i></li>
           <li><img src="https://picsum.photos/200/300?random=0" alt="My Profile"></li>
         </ul>
-        <div class="searchMoviesAndSeries">
+        <div class="searchMoviesAndSeries" @mouseleave="viewSearch">
           <input type="text" v-model="searchMoviesText" @keyup.enter="searchUserMovies" />
           <button @click="searchUserMovies">Cerca</button>
         </div>
@@ -34,13 +34,13 @@ export default {
     return {
       searchMoviesText: '',
       viewAreaSearchBox: false,
-      // viewAreaFilterSearchBox: false
     };
   },
   methods: {
     searchUserMovies() {
       this.$emit('searchMovies', this.searchMoviesText);
       this.searchMoviesText = '';
+      this.$emit('ResearchInProgress', 'research');
     },
     viewSearch() {
       const areaSearchBox = document.querySelector(".searchMoviesAndSeries");
@@ -53,17 +53,9 @@ export default {
         areaSearchBox.classList.add("view");
       }
     },
-    // filterSearch() {
-    //   const areaSearchBox = document.querySelector(".searchMoviesAndSeries");
-
-    //   if (this.viewAreaFilterSearchBox) {
-    //     this.viewAreaFilterSearchBox = false;
-    //     areaSearchBox.classList.remove("view");
-    //   } else {
-    //     this.viewAreaFilterSearchBox = true;
-    //     areaSearchBox.classList.add("view");
-    //   }
-    // }
+    getValuePage(value){
+      this.$emit('pageSelected', value);
+    }
   },
   props: {
     listMoviesArr: Array
@@ -140,14 +132,13 @@ header {
   .navDx ul {
     display: flex;
     align-items: center;
-    color: #ccc;
+    color: rgb(168, 168, 168);
 
     li {
       list-style-type: none;
       margin: 0 12px;
       cursor: pointer;
 
-      .active,
       &:hover {
         color: #fff;
       }
@@ -163,6 +154,10 @@ header {
         border-radius: 50px;
         cursor: default;
       }
+    }
+
+    .active{
+      color: #fff;
     }
   }
 }

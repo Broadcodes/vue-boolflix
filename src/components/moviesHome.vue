@@ -25,10 +25,15 @@
 
 <script>
 export default {
-
+    name: 'moviesHome',
+    data() {
+        return {
+       
+        }
+    }
 }
 </script>
-
-<style>
+    
+<style lang="scss" scoped>
 
 </style>

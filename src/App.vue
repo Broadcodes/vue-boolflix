@@ -7,13 +7,29 @@
     </div>
     <div v-else>
       <header>
-        <HeaderComponent :listMoviesObj="dataSearchArr" @searchMovies="getSearchMovies" />
+        <HeaderComponent :listMoviesObj="dataSearchArr" @searchMovies="getSearchMovies"
+          @ResearchInProgress="getResearch" @pageSelected="changePage" />
       </header>
 
       <main>
-        <HomepageContainer v-if="dataSearchArr.length === 0" />
-        <MainComponent v-else :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage"
-          @changePage="getNewPage" />
+        <div v-if="pageMenu === 'home'">
+          <HomepageContainer />
+        </div>
+        <div v-else-if="pageMenu === 'series'">
+          <SeriesHome />
+        </div>
+        <div v-else-if="pageMenu === 'movies'">
+          <MoviesHome />
+        </div>
+        <div v-else-if="pageMenu === 'recentlyAdded'">
+          <RecentlyAdded />
+        </div>
+        <div v-else-if="pageMenu === 'myList'">
+          <MyList />
+        </div>
+        <div v-else-if="pageMenu === 'research'">
+          <MainComponent :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage" @changePage="getNewPage" />
+        </div>
       </main>
     </div>
   </div>
@@ -26,6 +42,10 @@ import { apiKey } from "@/env/apiKey";
 import HeaderComponent from "./components/headerComponent.vue";
 import HomepageContainer from "./components/homepageContainer.vue";
 import MainComponent from "./components/MainComponent.vue";
+import SeriesHome from "./components/seriesHome.vue";
+import MoviesHome from "./components/moviesHome.vue";
+import RecentlyAdded from "./components/recentlyAdded.vue";
+import MyList from "./components/myList.vue";
 
 export default {
   name: "App",
@@ -35,7 +55,8 @@ export default {
       dataSearchArr: [],
       page: '1',
       maxPage: 0,
-      playIntro: true
+      playIntro: true,
+      pageMenu: '',
     };
   },
   methods: {
@@ -72,17 +93,35 @@ export default {
     getNewPage(page) {
       this.page = page;
       this.getSearchMovies(this.query);
+    },
+    changePage(pageMenuSelect) {
+      this.pageMenu = pageMenuSelect;
+      let menu = ['home', 'series', 'movies', 'recentlyAdded', 'myList']
+
+      for (let i = 0; i < menu.length; i++) {
+        document.getElementById(`${menu[i]}`).classList.remove('active');
+      }
+
+      document.getElementById(`${this.pageMenu}`).classList.add('active');
+    },
+    getResearch(value) {
+      this.pageMenu = value;
     }
   },
   components: {
     HeaderComponent,
     HomepageContainer,
     MainComponent,
+    SeriesHome,
+    MoviesHome,
+    RecentlyAdded,
+    MyList
   },
   mounted() {
     setInterval(() => {
       this.playIntro = false;
     }, 4200);
+    this.pageMenu = 'home';
   }
 };
 </script>
@@ -101,9 +140,10 @@ body {
 #app {
   .bg-page {
     height: calc(100vh - 65px);
-    overflow-y: scroll;
+    overflow-y: auto;
     background: rgb(20, 20, 20);
     background: linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgb(24, 24, 24) 100%);
+    padding-bottom: 50px;
   }
 
   .conteinerIntro {

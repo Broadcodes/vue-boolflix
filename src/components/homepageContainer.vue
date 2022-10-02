@@ -3,19 +3,13 @@
     <!-- Slider con effetto specchio -->
     <CarouselHomePage />
     <!-- Seleziona lettera da alfabeto -->
-    <SelectLetter @valueLetter="getValueLetter"/>
+    <SelectLetter @valueLetter="getValueLetter" />
     <!-- i più visti -->
     <h2>I più visti</h2>
     <TheMostViewed :dataQuery="dataArr" />
     <!-- i più votati -->
     <h2>I più votati</h2>
-    <TheMostVoted :dataQuery="dataArr" />
-    <h2>Movies</h2>
-    <!-- Movie -->
-    <MoviesHome />
-    <h2>Series</h2>
-    <!-- Serie -->
-    <SeriesHome />
+    <TheMostVoted :dataQuery="dataArr" />    
   </div>
 </template>
 
@@ -26,15 +20,13 @@ import { apiKey } from "@/env/apiKey";
 import CarouselHomePage from './carouselHomePage.vue';
 import TheMostViewed from './theMostViewed.vue';
 import TheMostVoted from './theMostVoted.vue';
-import MoviesHome from './moviesHome.vue';
-import SeriesHome from './seriesHome.vue';
 import SelectLetter from "./selectLetter.vue";
 
 
 export default {
   name: 'homepageContainer',
-  data(){
-    return{
+  data() {
+    return {
       query: "",
       dataArr: [],
     }
@@ -43,12 +35,10 @@ export default {
     CarouselHomePage,
     TheMostViewed,
     TheMostVoted,
-    MoviesHome,
-    SeriesHome,
     SelectLetter
-},
+  },
   methods: {
-    getApiDataHomepage() {
+    getApiDataHomepage(query) {
       let typeSearch = ["movie", "tv"];
       let arr = [];
 
@@ -57,7 +47,7 @@ export default {
         // L'url di seguito ha la query esterna in quanto verrà modificata dall'utente in base alla ricerca dei film che vorrà eseguire
         axios
           .get(
-            `https://api.themoviedb.org/3/search/${typeSearch[index]}?api_key=${apiKey}&language=it-IT&page=${this.page}&include_adult=false&query=${this.query}`
+            `https://api.themoviedb.org/3/search/${typeSearch[index]}?api_key=${apiKey}&language=it-IT&page=${this.page}&include_adult=false&query=${query}`
           )
           .then(({ data, status }) => {
             if (status === 200) {
@@ -72,10 +62,13 @@ export default {
       }
       return arr;
     },
-    getValueLetter(value){
+    getValueLetter(value) {
       this.query = value;
-      this.dataArr = this.getApiDataHomepage();
+      this.dataArr = this.getApiDataHomepage(this.query);
     }
+  },
+  created() {
+    this.dataArr = this.getApiDataHomepage("A");
   }
 };
 </script>
@@ -83,7 +76,7 @@ export default {
 <style lang="scss" scoped>
 h2 {
   color: #fff;
-  padding: 20px;
+  padding: 30px;
   font-size: 1.3rem;
 }
 </style>

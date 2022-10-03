@@ -13,6 +13,7 @@
     <!-- cos'è boolflix -->
     <h2>Cos'è Boolflix</h2>
     <MoreInfoBoolflix />
+    <FooterComponent />
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import TheMostViewed from './theMostViewed.vue';
 import TheMostVoted from './theMostVoted.vue';
 import SelectLetter from "./selectLetter.vue";
 import MoreInfoBoolflix from "./moreInfoBoolflix.vue";
+import FooterComponent from "./footerComponent.vue";
 
 
 export default {
@@ -40,7 +42,8 @@ export default {
     TheMostViewed,
     TheMostVoted,
     SelectLetter,
-    MoreInfoBoolflix
+    MoreInfoBoolflix,
+    FooterComponent
 },
   methods: {
     getApiDataHomepage(query) {

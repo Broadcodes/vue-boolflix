@@ -133,4 +133,27 @@ export default {
     }
 
 }
+
+@media screen and (max-width: 1150px){
+    .text1,
+    .text2,
+    .text3 {
+        padding: 20px 20px 20px 40px !important;
+    }
+}
+
+@media screen and (max-width: 850px){
+    .text1,
+    .text2,
+    .text3 {
+        padding: 0px !important;
+        h2 {
+            font-size: 3vw!important;
+        }
+
+        h3 {
+            font-size: 2vw!important;
+        }
+    }
+}
 </style>

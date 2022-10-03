@@ -58,7 +58,7 @@ export default {
         margin-bottom: 10px;
 
         li {
-            margin: 0 20px;
+            margin: 0 1vw;
             cursor: pointer;
 
             &:hover {

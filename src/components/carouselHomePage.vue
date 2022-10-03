@@ -198,4 +198,37 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1265px) {
+
+  .livelEffect {
+    .text h3 {
+      font-size: 1.8rem;
+      line-height: 2.7rem;
+    }
+
+    .text {
+      width: 45% !important;
+      top: 50%;
+      line-height: 1.5rem;
+      font-size: .7rem;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+
+  .livelEffect {
+    .text h3 {
+      font-size: 1.5rem !important;
+      line-height: 2rem !important;
+    }
+
+    .text {
+      width: 45% !important;
+      line-height: 1.7rem !important;
+      font-size: 1.2rem !important;
+    }
+  }
+}
 </style>

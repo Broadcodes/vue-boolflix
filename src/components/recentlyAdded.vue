@@ -35,4 +35,12 @@ export default {
     align-items: center;
   }
 }
+
+@media screen and (max-width: 992px){
+  .boxData {
+    h2{
+      font-size: 2vw;
+    }
+  }
+}
 </style>

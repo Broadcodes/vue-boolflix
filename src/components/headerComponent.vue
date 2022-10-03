@@ -56,7 +56,7 @@ export default {
         areaSearchBox.classList.add("view");
       }
     },
-    getValuePage(value){
+    getValuePage(value) {
       // Restituiesce il valore della pagina cliccata dall'utente nella barra di navigazione
       this.$emit('pageSelected', value);
     }
@@ -160,9 +160,15 @@ header {
       }
     }
 
-    .active{
+    .active {
       color: #fff;
     }
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .navSx ul li {
+    font-size: 1.3vw;
   }
 }
 </style>

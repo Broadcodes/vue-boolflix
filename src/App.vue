@@ -1,17 +1,27 @@
 <template>
   <div id="app">
+    <!-- All'avvio del sito mostra l'intro di boolflix -->
+    <!-- La variabile playIntro è settata a true già all'avvio, per poi passare a false mediante
+         un setTimeout -->
     <div v-if="playIntro === true" class="conteinerIntro">
       <video id="intro" autoplay muted>
         <source src="@/assets/img/Netflix_intro.mp4" type="video/mp4">
       </video>
     </div>
+    <!-- Allo scattare del playIntro a false viene mostrata la pagina Home del sito -->
     <div v-else>
       <header>
+        <!-- Nell'header vengono passati i dati acquisiti dall'API con il metodo getApiData -->
+        <!-- La stessa barra header ritorna dei valori che serviranno per le altre pagine -->
         <HeaderComponent :listMoviesObj="dataSearchArr" @searchMovies="getSearchMovies"
           @ResearchInProgress="getResearch" @pageSelected="changePage" />
       </header>
 
+      <!-- Qui sono presenti tutti i componenti che costituisco la pagina HomePage -->
       <main>
+        <!-- La variabile pageMenu contiene un dato che proviene dall'header.
+             Sta ad indicare quale pagina viene cliccato dall'utente nel menu di navigazione.
+             In base alla scelta dell'utente viene quindi mostrata la pagina desiderata-->
         <div v-if="pageMenu === 'home'">
           <HomepageContainer />
         </div>
@@ -28,7 +38,8 @@
           <MyList />
         </div>
         <div v-else-if="pageMenu === 'research'">
-          <MainComponent :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage" @changePage="getNewPage" />
+          <MainComponent :dataListObj="dataSearchArr" :currentPage="page" :maxPage="maxPage"
+          @changePage="getNewPage" />
         </div>
       </main>
     </div>
@@ -66,14 +77,16 @@ export default {
 
       for (let index = 0; index < typeSearch.length; index++) {
         // Genero una chiamata ad axios per ottenere i dati da un API.
-        // L'url di seguito ha la query esterna in quanto verrà modificata dall'utente in base alla ricerca dei film che vorrà eseguire
+        // L'url di seguito ha la query esterna in quanto verrà modificata dall'utente
+        // in base alla ricerca dei film che vorrà eseguire
         axios
           .get(
             `https://api.themoviedb.org/3/search/${typeSearch[index]}?api_key=${apiKey}&language=it-IT&page=${this.page}&include_adult=false&query=${this.query}`
           )
           .then(({ data, status }) => {
             if (status === 200) {
-              // Assegno i dati contenuti nell'array di oggetti contenuto nell'API alla variabile globale di tipo Array
+              // Assegno i dati contenuti nell'array di oggetti contenuto nell'API
+              // alla variabile globale di tipo Array
               arr.push(...data.results);
               this.maxPage += parseInt(data.total_pages);
             }
@@ -95,6 +108,7 @@ export default {
       this.getSearchMovies(this.query);
     },
     changePage(pageMenuSelect) {
+      // Funzione per applicare al menu la classe active
       this.pageMenu = pageMenuSelect;
       let menu = ['home', 'series', 'movies', 'recentlyAdded', 'myList']
 
@@ -118,7 +132,9 @@ export default {
     MyList
   },
   mounted() {
-    setInterval(() => {
+    // Il setTimeout serve per modificare la variabile playIntro in
+    // modo da interrompere la riproduzione della intro ad inizio schermata
+    setTimeout(() => {
       this.playIntro = false;
     }, 4200);
     this.pageMenu = 'home';

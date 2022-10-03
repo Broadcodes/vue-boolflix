@@ -1,5 +1,6 @@
 <template>
     <div class="bg-page">
+        <!-- Pagina dedicata solo alle serie accedendo dalla homepage cliccando in series nell'header -->
         <div class="titleSeries">
             <div id="jumbo">
                 <img src="@/assets/img/seriesPoster.png" alt="seriesPoster">
@@ -11,22 +12,25 @@
                 <img id="logo" src="@/assets/img/boolflix_logo.png" alt="boolflix logo">
             </span>
         </div>
+        <!-- permette di visualizzare più dati in base alla lettera dell'alfabeto presente nella pagina -->
         <SelectLetter @valueLetter="getValueLetter" />
         <div class="filterGenre">
             <h3>Filtra per genere</h3>
             <select name="filterSeries" id="filterSeries" @click="getValueOption">
                 <option value="">Seleziona un genere</option>
+                <!-- recupera le informazioni dall'api e popola le option -->
                 <option v-for="genre in genreSeries" :key="genre.id" :value="genre.id">{{genre.name}}</option>
             </select>
         </div>
         <div>
+            <!-- Mostra le cards in base alla ricerca del genere che abbiamo richiesto -->
             <div class="containerCard" v-if="genreSelected === ''">
                 <CardSeries v-for="(cardSerie, index) in dataArr" :key="cardSerie.index" :cardSeriesData="cardSerie"
                     :indexSeriesData="(index + 20)" />
             </div>
             <div class="containerCard" v-else>
-                <CardSeries v-for="(cardSerie, index) in searchGenre()" :key="cardSerie.index" :cardSeriesData="cardSerie"
-                    :indexSeriesData="(index + 20)" />
+                <CardSeries v-for="(cardSerie, index) in searchGenre()" :key="cardSerie.index"
+                    :cardSeriesData="cardSerie" :indexSeriesData="(index + 20)" />
             </div>
         </div>
     </div>
@@ -55,11 +59,11 @@ export default {
         CardSeries
     },
     methods: {
-        searchGenre(){
+        searchGenre() {
             let newArr = [];
-
+            // se la serie non è presente nell'array lo aggiunge
             this.dataArr.forEach(serie => {
-                if(serie.genre_ids.includes(parseInt(this.genreSelected))){
+                if (serie.genre_ids.includes(parseInt(this.genreSelected))) {
                     newArr.push(serie);
                 }
             });
@@ -95,6 +99,7 @@ export default {
             return arr;
         },
         getApiGenre() {
+            // Recupera i generi dall'api
             let genre = [];
 
             axios

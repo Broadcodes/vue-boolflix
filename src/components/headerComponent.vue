@@ -3,6 +3,7 @@
     <img @click="getValuePage('home')" class="logo" src="../assets/img/boolflix_logo.png" alt="Boolflix">
     <div class="navigationBar">
       <div class="navSx">
+        <!-- Barra di navigazione sinistra -->
         <ul>
           <li id="home" class="active" @click="getValuePage('home')">Home</li>
           <li id="series" @click="getValuePage('series')">Serie</li>
@@ -12,9 +13,9 @@
         </ul>
       </div>
       <div class="navDx">
+        <!-- Barra di navigazione destra -->
         <ul>
           <li><i class="fa-solid fa-magnifying-glass" @click="viewSearch"></i></li>
-          <!-- <li><i class="fa-solid fa-filter" @click="filterSearch"></i></li> -->
           <li><i class="fa-solid fa-bell"></i></li>
           <li><img src="https://picsum.photos/200/300?random=0" alt="My Profile"></li>
         </ul>
@@ -37,12 +38,14 @@ export default {
     };
   },
   methods: {
+    // restituisce il valore inserito dall'utente per effettuare la ricerca
     searchUserMovies() {
       this.$emit('searchMovies', this.searchMoviesText);
       this.searchMoviesText = '';
       this.$emit('ResearchInProgress', 'research');
     },
     viewSearch() {
+      // Mostra o nasconde l'input per la ricerca dei movies o delle series
       const areaSearchBox = document.querySelector(".searchMoviesAndSeries");
 
       if (this.viewAreaSearchBox) {
@@ -54,6 +57,7 @@ export default {
       }
     },
     getValuePage(value){
+      // Restituiesce il valore della pagina cliccata dall'utente nella barra di navigazione
       this.$emit('pageSelected', value);
     }
   },

@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="bg-page">
+      <!-- Pagina in cui vengono mostrate tutte le card ricercate dall'utente  -->
       <div class="containerCard">
         <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie"
           :indexMoviesData="index" />
         <CardSeries v-for="(cardSerie, index) in dataListObj" :key="cardSerie.id" :cardSeriesData="cardSerie"
           :indexSeriesData="index" />
       </div>
+      <!-- è possibile scorrere la ricerca andando da una pagina all'altra -->
       <div class="page">
         <i v-if="(parseInt(currentPage) - 1) != 0" class="fa-solid fa-angle-left" @click="prevPage"></i>
         <i v-else></i>

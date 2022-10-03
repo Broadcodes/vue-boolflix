@@ -39,9 +39,9 @@ import StarVoted from './starVoted.vue';
 
 export default {
     name: 'cardMovies',
-    data(){
-        return{
-           
+    data() {
+        return {
+
         }
     },
     props: {

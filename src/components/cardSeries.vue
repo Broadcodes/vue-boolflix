@@ -1,9 +1,12 @@
 <template>
+    <!-- Essendo un array di 40 elementi dove i primi 20 sono le series e i restanti 20 sono movies,
+         itero l'intero array facendo passare i primi 20 in questa sezione e gli altri nella sezione dei movies -->
     <div class="card" v-if="indexSeriesData > 19">
         <img id="poster" :src="getPosterPath('w342', cardSeriesData.poster_path)" :alt="cardSeriesData.title"
             @error="changeImgPoster" />
 
         <div class="areaDescription">
+            <!-- Se il titolo è uguale al titolo originale ne mostrerà solo 1 -->
             <div v-if="cardSeriesData.name === cardSeriesData.original_name">
                 <p v-if="cardSeriesData.name!= ''">Titolo: {{ cardSeriesData.name }}</p>
                 <p v-else>Titolo: Dato non presente</p>
@@ -21,6 +24,7 @@
             </p>
 
             <div>
+                <!-- L'area voto con le stelle mostra le stelle in base alla votazione che ha ricevuto il film -->
                 <p id="vote">Vote:
                     <span v-if="cardSeriesData.vote_average != ''">
                         <StarVoted :starValue="toFiveStars(cardSeriesData.vote_average)" />
@@ -44,6 +48,7 @@ export default {
         indexSeriesData: Number
     },
     methods: {
+        // funzione per mostrare un solo titolo o il titolo originale e quello tradotto
         viewOneTitle(translatedTitle, originalTitle) {
             if (translatedTitle === originalTitle) {
                 return `Titolo: ${translatedTitle}`;
@@ -53,12 +58,14 @@ export default {
         Titolo Originale: ${originalTitle}`;
             }
         },
+        // converte il voto presente nell'array in un numero arrotondato per difetto che va da 1 a 5
         toFiveStars(vote) {
             return Math.ceil(vote / 2);
         },
         getPosterPath(size, posterPath) {
             return `https://image.tmdb.org/t/p/${size}${posterPath}`;
         },
+        // sostituisce le immagini delle bandiere non presenti nell'api
         setFlagIcon(country) {
             switch (country) {
                 case "en":

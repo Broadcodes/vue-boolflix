@@ -1,5 +1,6 @@
 <template>
     <div class="bg-page">
+        <!-- Pagina che mostra solo i movies. Raggiungibile dalla homepage cliccando nella barra di navigazione header -->
         <div class="titleSeries">
             <div id="jumbo">
                 <img src="@/assets/img/seriesPoster.png" alt="seriesPoster">
@@ -11,9 +12,11 @@
                 <img id="logo" src="@/assets/img/boolflix_logo.png" alt="boolflix logo">
             </span>
         </div>
+        <!-- Permette di effettuare delle ricerche in base alla lettera selezionata -->
         <SelectLetter @valueLetter="getValueLetter" />
         <div class="filterGenre">
             <h3>Filtra per genere</h3>
+            <!-- Permette di effettuare delle ricerche in base al genere selezionato -->
             <select name="filterMovies" id="filterMovies" @click="getValueOption">
                 <option value="">Seleziona un genere</option>
                 <option v-for="genre in genreMovies" :key="genre.id" :value="genre.id">{{genre.name}}</option>
@@ -25,8 +28,8 @@
                     :indexMoviesData="index" />
             </div>
             <div class="containerCard" v-else>
-                <CardMovies v-for="(cardMovie, index) in searchGenre()" :key="cardMovie.index" :cardMoviesData="cardMovie"
-                    :indexMoviesData="index" />
+                <CardMovies v-for="(cardMovie, index) in searchGenre()" :key="cardMovie.index"
+                    :cardMoviesData="cardMovie" :indexMoviesData="index" />
             </div>
         </div>
     </div>
@@ -41,10 +44,10 @@ import CardMovies from "./cardMovies.vue";
 
 export default {
     name: 'moviesHome',
-    components:{
-    SelectLetter,
-    CardMovies
-},
+    components: {
+        SelectLetter,
+        CardMovies
+    },
     data() {
         return {
             query: '',
@@ -53,12 +56,12 @@ export default {
             genreMovies: [],
         }
     },
-    methods:{
-        searchGenre(){
+    methods: {
+        searchGenre() {
             let newArr = [];
 
             this.dataArr.forEach(movie => {
-                if(movie.genre_ids.includes(parseInt(this.genreSelected))){
+                if (movie.genre_ids.includes(parseInt(this.genreSelected))) {
                     newArr.push(movie);
                 }
             });

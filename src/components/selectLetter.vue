@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- Sezione che mostra la ricerca in base alle lettere dell'alfabeto -->
         <div class="selectLetter">
             <ul>
                 <li class="noSelect">-</li>
@@ -26,10 +27,12 @@ export default {
     },
     methods: {
         getValue(i) {
+            // rimuove tutte le classi active dalle lettere
             for (let index = 0; index < this.alphabet.length; index++) {
                 document.getElementById(`${index}`).classList.remove("active");
             }
 
+            // aggiunge la classe active SOLO alla lettera selezionata
             document.getElementById(`${i}`).classList.add("active");
             this.valueLetter = this.alphabet[i];
             this.$emit('valueLetter', this.valueLetter);

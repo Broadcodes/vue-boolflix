@@ -1,5 +1,6 @@
 <template>
     <div class="bg-page">
+        <!-- Area in cui vengono visualizzati i film o serie inseriti nella propria lista -->
         <div class="containerArea">
             <div class="boxData">
                 <h2>Nessun film o serie visti di recente</h2>

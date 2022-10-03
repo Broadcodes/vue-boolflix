@@ -44,7 +44,7 @@ export default {
     SelectLetter,
     MoreInfoBoolflix,
     FooterComponent
-},
+  },
   methods: {
     getApiDataHomepage(query) {
       let typeSearch = ["movie", "tv"];
@@ -89,7 +89,7 @@ h2 {
 }
 
 h2:nth-child(7) {
- margin: 60px 0;
- font-size: 2.5rem;
+  margin: 60px 0;
+  font-size: 2.5rem;
 }
 </style>

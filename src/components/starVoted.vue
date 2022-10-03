@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- restituisce le stelle per indicare il voto del film o della serie -->
         <span v-if="starValue === 1">
             <i class="starYellow fa-solid fa-star"></i>
             <i class="starGray fa-regular fa-star"></i>
@@ -48,11 +49,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .starYellow {
-        color: rgb(238, 202, 42);
-    }
+.starYellow {
+    color: rgb(238, 202, 42);
+}
 
-    .starGray {
-        color: rgb(199, 199, 199);
-    }
+.starGray {
+    color: rgb(199, 199, 199);
+}
 </style>

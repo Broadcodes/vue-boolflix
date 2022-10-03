@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <!-- Pagina usata per mostrare le series e i movies in homepage nella sezione i più votati -->
       <div class="containerCards">
         <div v-for="(card, index) in getSort()" :key="index">
           <div class="card">
@@ -33,9 +34,11 @@ export default {
   },
   methods: {
     getPosterPath(size, posterPath) {
+      // recupera le immagini dall'API: passando dimensione dell'immagine e url
       return `https://image.tmdb.org/t/p/${size}${posterPath}`;
     },
     getSort() {
+      // Funzione per ordinare i dati come i più votati
       let arr = [];
       let arrSort = [];
 
@@ -43,6 +46,7 @@ export default {
         arr.push(element.vote_average);
       });
 
+      // I valori dell'array devono andare dal più grande al più piccolo
       arr.sort(function (a, b) {
         return b - a;
       });

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- Area raffiguranti le sezioni presenti nella homepage -->
         <div class="container">
             <div class="containerArea firstArea">
                 <div class="text1">
@@ -43,7 +44,7 @@
 
 <script>
 export default {
-
+    name: 'moreInfoBoolflix'
 }
 </script>
 

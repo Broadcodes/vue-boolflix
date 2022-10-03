@@ -33,7 +33,7 @@
 
 <script>
 export default {
-
+    name: 'footerComponent'
 }
 </script>
 
@@ -48,16 +48,16 @@ export default {
 
     ul {
         list-style-type: none;
-        
+
         li {
             padding: 15px;
 
-            a{
+            a {
                 text-decoration: none;
                 color: rgb(121, 121, 121);
                 font-size: 0.8rem;
 
-                &:hover{
+                &:hover {
                     text-decoration: underline;
                 }
             }

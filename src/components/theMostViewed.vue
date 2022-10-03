@@ -45,9 +45,12 @@ export default {
         return b - a;
       });
 
-      for (let i = 0; i < arr.length; i++) {
+      // elimina i valori duplicati indicante il voto presenti nell'array
+      let unique = arr.filter((x, i) => arr.indexOf(x) === i);
+
+      for (let i = 0; i < unique.length; i++) {
         for (let j = 0; j < this.dataQuery.length; j++) {
-          if (arr[i] === this.dataQuery[j].popularity) {
+          if (unique[i] === this.dataQuery[j].popularity) {
             arrSort.push(this.dataQuery[j]);
           }
         }

@@ -46,18 +46,24 @@ export default {
         arr.push(element.vote_average);
       });
 
+      
       // I valori dell'array devono andare dal più grande al più piccolo
       arr.sort(function (a, b) {
         return b - a;
       });
+   
+      // elimina i valori duplicati indicante il voto presenti nell'array
+      let unique = arr.filter((x, i) => arr.indexOf(x) === i);
 
-      for (let i = 0; i < arr.length; i++) {
+      for (let i = 0; i < unique.length; i++) {
         for (let j = 0; j < this.dataQuery.length; j++) {
-          if (arr[i] === this.dataQuery[j].vote_average) {
+          if (unique[i] === this.dataQuery[j].vote_average) {
             arrSort.push(this.dataQuery[j]);
           }
         }
       }
+
+      // console.log(arrSort);
 
       return arrSort;
     },

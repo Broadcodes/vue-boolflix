@@ -9,7 +9,10 @@
     <TheMostViewed :dataQuery="dataArr" />
     <!-- i più votati -->
     <h2>I più votati</h2>
-    <TheMostVoted :dataQuery="dataArr" />    
+    <TheMostVoted :dataQuery="dataArr" />
+    <!-- cos'è boolflix -->
+    <h2>Cos'è Boolflix</h2>
+    <MoreInfoBoolflix />
   </div>
 </template>
 
@@ -21,6 +24,7 @@ import CarouselHomePage from './carouselHomePage.vue';
 import TheMostViewed from './theMostViewed.vue';
 import TheMostVoted from './theMostVoted.vue';
 import SelectLetter from "./selectLetter.vue";
+import MoreInfoBoolflix from "./moreInfoBoolflix.vue";
 
 
 export default {
@@ -35,8 +39,9 @@ export default {
     CarouselHomePage,
     TheMostViewed,
     TheMostVoted,
-    SelectLetter
-  },
+    SelectLetter,
+    MoreInfoBoolflix
+},
   methods: {
     getApiDataHomepage(query) {
       let typeSearch = ["movie", "tv"];
@@ -78,5 +83,10 @@ h2 {
   color: #fff;
   padding: 30px;
   font-size: 1.3rem;
+}
+
+h2:nth-child(7) {
+ margin: 60px 0;
+ font-size: 2.5rem;
 }
 </style>

@@ -1,20 +1,20 @@
 <template>
     <!-- Essendo un array di 40 elementi dove i primi 20 sono le series e i restanti 20 sono movies,
          itero l'intero array facendo passare i primi 20 in questa sezione e gli altri nella sezione dei movies -->
-    <div class="card" v-if="indexSeriesData > 19">
+    <div class="card">
         <img id="poster" :src="getPosterPath('w342', cardSeriesData.poster_path)" :alt="cardSeriesData.title"
             @error="changeImgPoster" />
 
         <div class="areaDescription">
             <!-- Se il titolo è uguale al titolo originale ne mostrerà solo 1 -->
             <div v-if="cardSeriesData.name === cardSeriesData.original_name">
-                <p v-if="cardSeriesData.name!= ''">Titolo: {{ cardSeriesData.name }}</p>
+                <p v-if="cardSeriesData.name != ''">Titolo: {{ cardSeriesData.name }}</p>
                 <p v-else>Titolo: Dato non presente</p>
             </div>
             <div v-else>
-                <p v-if="cardSeriesData.name!= ''">Titolo: {{ cardSeriesData.name }}</p>
+                <p v-if="cardSeriesData.name != ''">Titolo: {{ cardSeriesData.name }}</p>
                 <p v-else>Titolo: Dato non presente</p>
-                <p v-if="cardSeriesData.original_name!= ''">Titolo originale: {{ cardSeriesData.original_name }}</p>
+                <p v-if="cardSeriesData.original_name != ''">Titolo originale: {{ cardSeriesData.original_name }}</p>
                 <p v-else>Titolo originale: Dato non presente</p>
             </div>
 
@@ -44,8 +44,7 @@ import StarVoted from './starVoted.vue';
 export default {
     name: "cardSeries",
     props: {
-        cardSeriesData: Object,
-        indexSeriesData: Number
+        cardSeriesData: Object
     },
     methods: {
         // funzione per mostrare un solo titolo o il titolo originale e quello tradotto

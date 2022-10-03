@@ -11,7 +11,7 @@
                 </div>
                 <div class="image1">
                     <img src="@/assets/img/tv.png" alt="tv image">
-                    <video id="video1" autoplay muted>
+                    <video id="video1" autoplay muted loop>
                         <source src="@/assets/img/video.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="image3">
                     <img src="@/assets/img/device-pile.png" alt="device image">
-                    <video id="video3" autoplay muted>
+                    <video id="video3" autoplay muted loop>
                         <source src="@/assets/img/video-devices.mp4" type="video/mp4">
                     </video>
                 </div>

@@ -40,9 +40,9 @@ export default {
 <style lang="scss" scoped>
 .componentArea {
     width: 100%;
-    height: 450px;
+    height: 300px;
     display: flex;
-    padding: 140px 100px;
+    padding: 100px 100px;
     justify-content: space-evenly;
     align-items: top;
 
@@ -50,7 +50,7 @@ export default {
         list-style-type: none;
 
         li {
-            padding: 15px;
+            padding: 7px;
 
             a {
                 text-decoration: none;

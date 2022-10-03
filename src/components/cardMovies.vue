@@ -1,5 +1,5 @@
 <template>
-    <div class="card" v-if="indexMoviesData < 20">
+    <div class="card">
         <img id="poster" :src="getPosterPath('w342', cardMoviesData.poster_path)" :alt="cardMoviesData.title"
             @error="changeImgPoster" />
 
@@ -46,7 +46,6 @@ export default {
     },
     props: {
         cardMoviesData: Object,
-        indexMoviesData: Number
     },
     methods: {
         viewOneTitle(translatedTitle, originalTitle) {

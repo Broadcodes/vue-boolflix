@@ -3,10 +3,8 @@
     <div class="bg-page">
       <!-- Pagina in cui vengono mostrate tutte le card ricercate dall'utente  -->
       <div class="containerCard">
-        <CardMovies v-for="(cardMovie, index) in dataListObj" :key="index" :cardMoviesData="cardMovie"
-          :indexMoviesData="index" />
-        <CardSeries v-for="(cardSerie, index) in dataListObj" :key="cardSerie.id" :cardSeriesData="cardSerie"
-          :indexSeriesData="index" />
+        <CardMovies v-for="cardMovie in getMovies()" :key="cardMovie.id" :cardMoviesData="cardMovie" />
+        <CardSeries v-for="cardSerie in getSeries()" :key="cardSerie.id" :cardSeriesData="cardSerie" />
       </div>
       <!-- è possibile scorrere la ricerca andando da una pagina all'altra -->
       <div class="page">
@@ -15,11 +13,15 @@
         <div class="numberPage">
           <p v-if="(parseInt(currentPage) - 1) != 0">{{parseInt(currentPage) - 1}}</p>
           <p v-else></p>
+
+
           <p>{{currentPage}}</p>
-          <p v-if="parseInt(currentPage) < maxPage">{{parseInt(currentPage) + 1}}</p>
+
+          
+          <p v-if="getNumberPage() === 40">{{parseInt(currentPage) + 1}}</p>
           <p v-else></p>
         </div>
-        <i v-if="parseInt(currentPage) < maxPage" class="fa-solid fa-angle-right" @click="nextPage"></i>
+        <i v-if="getNumberPage() === 40" class="fa-solid fa-angle-right" @click="nextPage"></i>
         <i v-else></i>
       </div>
     </div>
@@ -50,6 +52,38 @@ export default {
     },
     nextPage() {
       this.$emit('changePage', (parseInt(this.currentPage) + 1).toString());
+    },
+    getMovies() {
+      let arrMovies = [];
+
+      this.dataListObj.forEach(element => {
+        if (element.title != '' && element.title != undefined) {
+          arrMovies.push(element);
+        }
+      });
+
+      return arrMovies;
+    },
+    getSeries(){
+      let arrSeries = [];
+
+      this.dataListObj.forEach(element => {
+        if (element.name != '' && element.name != undefined) {
+          arrSeries.push(element);
+        }
+      });
+
+      return arrSeries;
+    },
+    getNumberPage(){
+
+      let count = 0;
+      
+      for (let i = 0; i < this.dataListObj.length; i++) {
+        count++
+      }
+
+      return count;
     }
   }
 };

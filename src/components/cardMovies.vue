@@ -65,10 +65,6 @@
             <p v-if="cardMoviesData.overview != ''">Trama: {{cardMoviesData.overview}}</p>
             <p v-else>Trama: Dato non presente</p>
         </div>
-        <!-- <i id="showMoreInfo" class="fa-solid fa-circle-arrow-right" @click="btnShowMore"></i> -->
-        <!-- <div id="showMore">
-            <p>prova test</p>
-        </div> -->
     </div>
 </template>
 
@@ -141,45 +137,6 @@ export default {
     &:hover .areaDescription {
         display: inline-block;
     }
-
-    // #showMoreInfo {
-    //     display: none;
-    // }
-
-    // &:hover #showMoreInfo {
-    //     display: inline-block;
-    //     font-size: 1.8rem;
-    //     position: absolute;
-    //     padding: 15px;
-    //     bottom: 15px;
-    //     color: #fff;
-    //     animation: backAndForth linear 0.85s infinite;
-    //     cursor: pointer;
-
-    //     &:hover {
-    //         color: rgb(209, 209, 209);
-    //     }
-    // }
-
-    // @keyframes backAndForth {
-    //     0% {
-    //         left: calc(342px - 100px);
-    //     }
-
-    //     ;
-
-    //     50% {
-    //         left: calc(342px - 80px);
-    //     }
-
-    //     ;
-
-    //     100% {
-    //         left: calc(342px - 100px);
-    //     }
-
-    //     ;
-    // }
 
     .areaDescription {
         display: none;

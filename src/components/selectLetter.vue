@@ -3,8 +3,8 @@
         <div class="selectLetter">
             <ul>
                 <li class="noSelect">-</li>
-                <li id="0" class="firstLetter active" @click="getValue('0')">A</li>
-                <li :id="index + 1" @click="getValue(index + 1)" v-for="(letter, index) in alphabet" :key="index + 1">
+                <li :id="index" @click="getValue(index)" :class="{'active' : index === 0}"
+                    v-for="(letter, index) in alphabet" :key="index">
                     {{letter}}
                 </li>
                 <li class="noSelect">-</li>
@@ -20,16 +20,14 @@ export default {
     data() {
         return {
             valueLetter: '',
-            alphabet: ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L',
+            alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L',
                 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z'],
         }
     },
     methods: {
         getValue(i) {
-
-            document.querySelector(".firstLetter").classList.remove("active");
             for (let index = 0; index < this.alphabet.length; index++) {
-                document.getElementById(`${index + 1}`).classList.remove("active");
+                document.getElementById(`${index}`).classList.remove("active");
             }
 
             document.getElementById(`${i}`).classList.add("active");

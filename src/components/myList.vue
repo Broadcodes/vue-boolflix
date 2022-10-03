@@ -2,7 +2,7 @@
     <div class="bg-page">
         <div class="containerArea">
             <div class="boxData">
-                <h2>Nessun dato presente</h2>
+                <h2>Nessun film o serie visti di recente</h2>
             </div>
         </div>
     </div>

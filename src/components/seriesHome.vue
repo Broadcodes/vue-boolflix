@@ -12,7 +12,7 @@
             </span>
         </div>
         <SelectLetter @valueLetter="getValueLetter" />
-        <div class="filterGernre">
+        <div class="filterGenre">
             <h3>Filtra per genere</h3>
             <select name="filterSeries" id="filterSeries" @click="getValueOption">
                 <option value="">Seleziona un genere</option>
@@ -37,7 +37,7 @@ import axios from "axios";
 import { apiKey } from "@/env/apiKey";
 
 import SelectLetter from './selectLetter.vue';
-import CardSeries from "./cardSeries.vue";
+import CardSeries from './cardSeries.vue';
 
 export default {
     name: 'seriesHome',
@@ -46,7 +46,8 @@ export default {
             query: '',
             dataArr: [],
             genreSeries: [],
-            genreSelected: ''
+            genreSelected: '',
+            preferred: []
         }
     },
     components: {
@@ -98,7 +99,7 @@ export default {
 
             axios
                 .get(
-                    `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=it-IT`
+                    `https://api.themoviedb.org/3/genre/tv/list?api_key=${apiKey}&language=it-IT`
                 )
                 .then(({ data, status }) => {
                     if (status === 200) {
@@ -163,10 +164,10 @@ export default {
 
 }
 
-.filterGernre {
+.filterGenre {
     color: #fff;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     padding: 20px 30px;
 

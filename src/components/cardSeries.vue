@@ -147,6 +147,7 @@ export default {
         overflow: hidden;
         border: 8px double rgb(92, 92, 92);
         box-shadow: 0px 0px 100px #000000 inset;
+        z-index: 10;
 
         &:hover {
             overflow-y: auto;

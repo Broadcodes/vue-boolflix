@@ -3,8 +3,8 @@
     <div class="containerCards">
       <div v-for="(card, index) in getSort()" :key="index">
         <div class="card">
-          <img :src="getPosterPath('w300', card.backdrop_path)" :alt="card.title">
-          
+          <img :src="getPosterPath('w300', card.backdrop_path)" :alt="card.title" @error="changeImg">
+
           <div v-if="card.title !== '' || card.name !== '' ">
             <h2>{{card.title}}</h2>
             <h2>{{card.name}}</h2>
@@ -53,7 +53,10 @@ export default {
         }
       }
       return arrSort;
-    }
+    },
+    changeImg(e) {
+      e.target.src = "https://www.srservicesge.it/images/immagine_non_disponibile.png";
+    },
   }
 }
 </script>
@@ -70,7 +73,9 @@ export default {
 
     img {
       min-width: 300px;
+      max-width: 300px;
       min-height: 169px;
+      max-height: 169px;
     }
 
     h2 {
@@ -81,6 +86,6 @@ export default {
 }
 
 ::-webkit-scrollbar {
-    height: 0.5em !important;
-  }
+  height: 0.5em !important;
+}
 </style>
